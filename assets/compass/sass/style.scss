@@ -1,0 +1,103 @@
+@import 'compass/css3';
+
+$primaryDivTextColor: #ff0000;
+$lineHeightChild: 20px;
+
+body{
+	color: $primaryDivTextColor;
+}
+
+#test-div{
+	$primaryDivTextColor: blue;
+	color: $primaryDivTextColor;
+}
+
+// SASS Math - you cannot mix unit types, such as % and px, in Math
+
+// + -- addition
+// - -- subtraction
+// / -- Division( someties, / is shorthand....i.e. font; in the / must be inside ())
+// * -- Multiplication
+// % -- modulus
+// == -- conditional equal
+// != -- conditional non-equal
+
+//Homemade bootstrap
+$containerWidth: 100%;
+.homemade-col-1{
+	width: $containerWidth;
+}
+.homemade-col-2{
+	width: ($containerWidth / 2);
+	float: left;
+}
+
+.homemade-col-4{
+	width: ($containerWidth / 4);
+	float: left
+}
+
+.random-size{
+	font-size: random(100) + px;
+}
+
+
+.max-size{
+	font-size: max(23,62,19,44,12,51) + px;
+	color: darken($primaryDivTextColor, 20%);
+}
+
+//address of available SASS functions
+//http://sass-lang.com/documentation/Sass/Script/Functions.html
+
+// Extend directive
+
+.input{
+	border-radius: 10px;
+	color: red;
+	border: 2px solid #0000ff;
+	padding: 10px 20px;
+	clear: both;
+}
+
+.second-input{
+	@extend .input;
+	color: blue;
+}
+
+@mixin border-radius($radius){
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin circle($radius, $color, $borderColor){
+	border-radius: $radius;
+	color: $color;
+	border: 3px solid $borderColor;
+}
+
+
+.circle{
+	@include border-radius(10px);
+	border: 3px solid #ffff00;
+}
+
+.circle-two{
+	@include circle(20px,#ff00ff,#000000);
+}
+
+@function getColumnWidth($width, $numColumns, $margin){
+	@return ($width / $numColumns) - ($margin * 2);
+}
+
+.column-test{
+	background: black;
+	width: getColumnWidth(300px, 5, 10px);
+}
+
+
+
+
+
